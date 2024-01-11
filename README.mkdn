@@ -1,23 +1,23 @@
 <div align="center">
-<img src="https://dl.ayokaacr.net/5:/Not%20ROM/KasumiBanner.png" />
-<h1>Project Kasumi</h1>
+<h1>Project Kizashi</h1>
 </br>
-<strong><i> Another weebified custom ROM aiming to be a home for weebs. </i></strong>
+<strong><i> Focucing on Android 11 with performance and stablity with a touch of customizations . </i></strong>
 </br>
-<i> Based on Project Materium - Optimized LineageOS-based Android aftermarket firmware with extra features, developed by people all over the world. </i>
+<i> Based on Project Kasumi and Materium - Optimized LineageOS-based Android aftermarket firmware with extra features, developed by people all over the world. </i>
 </br>
 
 -----
 
 Getting started
 ---------------
-To get started with Android/Project Kasumi, you'll need to get
+To get started with Android/Project Kizashi, you'll need to get
 familiar with [Repo](https://source.android.com/source/using-repo.html) and [Version Control with Git](https://source.android.com/source/version-control.html).
 
 -----
 
 Credits
 -------
+- [**ProjectKasumi**](https://github.com/ProjectKasumi)
 - [**Project Materium**](https://github.com/ProjectMaterium)
 - [**LineageOS**](https://github.com/LineageOS)
 - [**LineageOSMod**](https://github.com/LineageOSMod)
@@ -38,103 +38,26 @@ Credits
 - [**Wave Project**](https://github.com/Wave-Project)
 - [**PixelBoot**](https://github.com/PixelBoot)
 *********
-<a href="https://twitter.com/ProjectKasumi_">
-<img src="https://img.shields.io/badge/Twitter-blue?style=for-the-badge&logo=twitter&logoColor=FFFFFF">
-</a>
-<a href="https://discord.gg/FRYUFtWDc6">
-<img src="https://img.shields.io/badge/Discord_Server-5865F2?style=for-the-badge&logo=discord&logoColor=FFFFFF">
-</a>
 
 -----
 
 To initialize your local repository using your trees, use a command like this:  
 ```
-repo init --depth=1 -u https://github.com/ProjectKasumi/manifest.git -b kasumi-v1 --git-lfs --depth=1 --no-tags --no-clone-bundle
+repo init --depth=1 -u https://github.com/Project-Kizashi/android.git -b relay --git-lfs --no-tags --no-clone-bundle
 ```
-Now we need to sync just enough repos to get "Kasumi's Tools" up:
+Now we need to sync up:
 ```
-repo sync build/make external/tuuru vendor/kasumi
+repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 ```
-Then, to sync full source up:
+Then, set source up:
 ```
 . build/envsetup.sh
-reposync auto
 ```
 And to start build:
 ```
-play live kasumi_<devicecodename>-userdebug
+lunch kasumi_<devicecodename>-userdebug
+mka bandori
 ```
-
-Also remember to check [build flags](https://github.com/ProjectKasumi/build_flags) for customizing your build further (E.g. shipping with Lawnchair instead of Trebuchet).
 
 -----
 
-Submitting Patches
-------------------
-
-Patches are always welcome! To submit one, email the lead developer
-at windowz414[at]projectkasumi[dot]xyz with your patch in this format;
-
-</div>
-
-Subject: `{<relevant repo name>} [PATCH] <commit subject>`
-
-```
-<commit description>
-
-Signed-off-by: Your Name <user@example.com>
-
----
-<diff of your patch>
-```
-
-Here's an example for you;
-
-Subject: `{frameworks_base} [PATCH] PixelPropsUtils: Make CTS/Play Integrity pass again`
-
-```
-The logic behind CTS and Play Integrity has been updated today it now
-checks the product and model names against the fingerprint and if
-they do not match the CTS profile will fail.
-
-Test: Boot, check for CTS and Play Integrity
-
-Change-Id: I089d5ef935bba40338e10c795ea7d181103ffd15
-Signed-off-by: Dyneteve <dyneteve@hentaios.com>
-Signed-off-by: Beru Hinode <windowz414@1337.lgbt>
----
- .../android/internal/util/custom/PixelPropsUtils.java | 11 +++--------
- 1 file changed, 3 insertions(+), 8 deletions(-)
-
-diff --git a/core/java/com/android/internal/util/custom/PixelPropsUtils.java b/core/java/com/android/internal/util/custom/PixelPropsUtils.java
-index 18aa51998e536..2ad7eccdcb192 100644
---- a/core/java/com/android/internal/util/custom/PixelPropsUtils.java
-+++ b/core/java/com/android/internal/util/custom/PixelPropsUtils.java
-@@ -179,18 +179,13 @@ private static void setPropValue(String key, Object value){
-     }
- 
-     private static boolean isCallerSafetyNet() {
--        return Arrays.stream(Thread.currentThread().getStackTrace())
-+        return sIsGms && Arrays.stream(Thread.currentThread().getStackTrace())
-                 .anyMatch(elem -> elem.getClassName().contains("DroidGuard"));
-     }
- 
-     public static void onEngineGetCertificateChain() {
--        // Check stack for SafetyNet
--        if (sIsGms && isCallerSafetyNet()) {
--            throw new UnsupportedOperationException();
--        }
--
--        // Check stack for Play Integrity
--        if (sIsFinsky) {
-+        if (isCallerSafetyNet() || sIsFinsky) {
-+            Log.i(TAG, "Blocked key attestation sIsGms=" + sIsGms + " sIsFinsky=" + sIsFinsky);
-             throw new UnsupportedOperationException();
-         }
-     }
-```
-
-Not necessary but you might as well want to attach the patch file in
-the email just in case. :)
-
-Example patch: https://github.com/ProjectKasumi/frameworks_base/commit/7dac8b45642e9db401cfdadabc16ebd95aa01cd8.patch
