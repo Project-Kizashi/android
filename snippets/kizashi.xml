@@ -46,6 +46,8 @@
 <project path="packages/apps/TvSettings" name="android_packages_apps_TvSettings" remote="kizashi" groups="pdk-fs"/>
 <project path="packages/apps/Trebuchet" name="android_packages_apps_Trebuchet" remote="kizashi" />
 <project path="packages/services/Telecomm" name="android_packages_services_Telecomm" remote="kizashi" groups="pdk-cw-fs,pdk-fs" />
+<project path="packages/apps/Backgrounds" name="android_packages_apps_Backgrounds" remote="kizashi" />
+
 <project path="prebuilts/clang/host/linux-x86" name="android_prebuilts_clang_host_linux-x86" groups="pdk" clone-depth="1" remote="kizashi"/>
 
 <project path="system/bt" name="android_system_bt" groups="pdk" remote="kizashi" />
