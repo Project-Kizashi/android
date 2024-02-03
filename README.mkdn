@@ -17,6 +17,7 @@ familiar with [Repo](https://source.android.com/source/using-repo.html) and [Ver
 
 Credits
 -------
+- [**ProjectSakura**](https://github.com/ProjectSakura)
 - [**ProjectKasumi**](https://github.com/ProjectKasumi)
 - [**Project Materium**](https://github.com/ProjectMaterium)
 - [**LineageOS**](https://github.com/LineageOS)
@@ -36,6 +37,7 @@ Credits
 - [**Project Sakura**](https://github.com/ProjectSakura)
 - [**Weeb Projekt**](https://github.com/WeebProject)
 - [**Wave Project**](https://github.com/Wave-Project)
+- [**PixelBoot**](https://github.com/PixelBoot)
 - [**PixelBoot**](https://github.com/PixelBoot)
 *********
 
