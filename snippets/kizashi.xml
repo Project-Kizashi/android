@@ -9,7 +9,7 @@
            fetch="https://gitlab.com/project-kizashi"
            revision="relay" />
 
-<remote  name="gitlab"
+<remote  name="gitlab-Kizashi"
            fetch="https://gitlab.com/" />
 
 <project path="build/make" name="android_build_make" groups="pdk" remote="kizashi">
@@ -64,6 +64,6 @@
 
 <project name="vendor_prebuilts" path="vendor/prebuilts" remote="kizashi-lab" />
 
-<project name="Panchajanya1999/azure-clang" path="prebuilts/clang/host/linux-x86/clang-azure" remote="gitlab" />
+<project name="Panchajanya1999/azure-clang" path="prebuilts/clang/host/linux-x86/clang-azure" remote="gitlab-Kizashi" />
 
 </manifest>
